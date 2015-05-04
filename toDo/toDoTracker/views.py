@@ -13,11 +13,6 @@ def index(request):
     conn.commit()
     rows = cursor.fetchall()
     context = {'rows': rows}
-    for row in rows:
-       taskname = row[1]
-       progress = row[2]
-       deadline = row[4]
-       context.update({'taskname_value': taskname, 'progress_value': progress, 'deadline_value': deadline})
     return render(request, 'ToDo-Tracker.html', context)
 
 class EditTaskView(TemplateView):
