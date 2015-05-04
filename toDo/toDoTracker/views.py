@@ -1,7 +1,24 @@
 from django.views.generic import TemplateView
+from django.shortcuts import render
+from toDoTracker.forms import NewTaskForm
+import sqlite3
 
-class IndexView(TemplateView):
-   template_name = 'ToDo-Tracker.html'
+#class IndexView(TemplateView):
+#   template_name = 'ToDo-Tracker.html'
+
+def index(request):
+    conn = sqlite3.connect("db.sqlite3") 
+    cursor = conn.cursor()
+    cursor.execute("Select * from toDoTracker_list")
+    conn.commit()
+    rows = cursor.fetchall()
+    context = {'rows': rows}
+    for row in rows:
+       taskname = row[1]
+       progress = row[2]
+       deadline = row[4]
+       context.update({'taskname_value': taskname, 'progress_value': progress, 'deadline_value': deadline})
+    return render(request, 'ToDo-Tracker.html', context)
 
 class EditTaskView(TemplateView):
    template_name = 'Edit-Task.html'
@@ -11,6 +28,31 @@ class NewTaskView(TemplateView):
 
 class ImpressumView(TemplateView):
    template_name = 'Impressum.html'
+
+
+
+def newTask(request):
+    if request.method == 'GET':
+        form = NewTaskForm()
+    else:
+        # A POST request: Handle Form Upload
+        form = NewTaskForm(request.POST) # Bind data from request.POST into a NewTaskForm
+ 
+        # If data is valid, proceeds to create a new post and redirect the user
+        if form.is_valid():
+            task = form.cleaned_data['task']
+            progress = str(form.cleaned_data['progress'])
+            deadline = str(form.cleaned_data['deadline'])
+            
+ 
+            conn = sqlite3.connect("db.sqlite3") 
+            cursor = conn.cursor()
+            cursor.execute("INSERT INTO toDoTracker_list VALUES (null,'"+task+"', "+progress+", 'false', '"+deadline+"')")
+            conn.commit()
+ 
+    return render(request, 'New-Task.html', {
+        'form': form,
+    })
 
 #from django.http import HttpResponse
 #from django.template import loader
