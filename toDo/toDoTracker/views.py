@@ -24,6 +24,9 @@ class NewTaskView(TemplateView):
 class ImpressumView(TemplateView):
    template_name = 'Impressum.html'
 
+class IndexView(TemplateView):
+    template_name = 'ToDo-Tracker.html'
+
 
 
 def newTask(request):

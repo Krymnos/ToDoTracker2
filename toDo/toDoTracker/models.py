@@ -3,9 +3,9 @@ import datetime
 
 class List(models.Model): 
 
-  task = models.CharField(max_length=250)
+  task = models.CharField(max_length=160)
   progress = models.IntegerField(default=0)
-  deadline = models.CharField(max_length=20)
+  deadline = models.DateField()
   completed = models.BooleanField(default=False)
 
   def __str__(self): 
