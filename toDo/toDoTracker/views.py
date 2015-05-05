@@ -2,8 +2,6 @@ from django.views.generic import TemplateView
 from django.shortcuts import render
 from toDoTracker.forms import NewTaskForm
 import sqlite3
-from django.views.generic import UpdateView
-from toDoTracker.models import List
 
 #class IndexView(TemplateView):
 #   template_name = 'ToDo-Tracker.html'
@@ -53,11 +51,6 @@ def newTask(request):
     return render(request, 'New-Task.html', {
         'form': form,
     })
-
-class UpdateView(UpdateView):
-    template_name = 'Edit-Task.html'
-    model = List
-    success_url = '/'
 
 #from django.http import HttpResponse
 #from django.template import loader
