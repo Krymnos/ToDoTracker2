@@ -19,4 +19,3 @@ class List(models.Model):
   class Admin: 
 
     pass
-

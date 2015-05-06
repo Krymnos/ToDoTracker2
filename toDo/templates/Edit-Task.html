@@ -58,21 +58,20 @@
         </ul>
 		
 		<form action ="" method="post" class="form">
-      {% csrf_token %}
 		<div class="row">
     	<div class="col-sm-6"><h4>ToDo:</h4>
   		  <div class="form-group">
       		<label class="sr-only" for="newTask">ToDo:</label>
-          <!-- field for editing tasks -->
+          <!--field for editing tasks -->
           
-          <!-- <textarea class="form-control" rows="2" id="newTask">
+          <textarea class="form-control" rows="2" id="newTask">
             {{ row.1 }}
-          </textarea> -->
+          </textarea>
 
-          <form action="" method="post">{% csrf_token %}
+          <!-- <form action="" method="post">{% csrf_token %}
             {{ form.as_p }}
             <input type="text" value="{{ row.value }}" />
-          </form>
+          </form> -->
 
 			 </div>
 		  </div>
@@ -106,12 +105,29 @@
   
   
     </div>
-  <!-- button for saving the changes -->
-  <!-- <button type="submit" class="btn btn-default">Save changes</button> -->
-  <form action="Edit-Task">
-    <input type="submit" value="Save Changes" class="btn btn-success" />
   </form>
- </form>
+  <!-- button for saving the changes -->
+  
+  <!-- <button type="submit" class="btn btn-default">Save changes</button>
+  <form action="toDoUpdate">
+    <input type="submit" value="Save Changes" class="btn btn-success" />
+  </form> -->
+ 
+<form action="/" method="post">
+    <input type="submit" value="Submit" />
+</form>
+
+<!-- <form action="/" method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+
+  <label for="task">Task: </label>
+  <input id="task" type="text" name="task" maxlength="100">
+
+  <input type="submit" value="Update" />
+</form> -->
+
+
 		
     </div>
 
