@@ -14,8 +14,11 @@ class List(models.Model):
 
   class Meta: 
 
-    ordering = ['task'] 
+    ordering = ['task']
 
   class Admin: 
 
     pass
+
+  def get_absolute_url(self):
+    return u'/toDoTracker/'

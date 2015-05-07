@@ -6,4 +6,5 @@ urlpatterns = patterns('',
     url(r'^edit/(?P<pk>\d+)$', views.TaskUpdateView.as_view(), name='edit_task'),
     url(r'^New-Task.html', views.ToDoCreate.as_view(), name = 'new_task'),
     url(r'^Impressum.html', views.ImpressumView.as_view()),
+    
     )

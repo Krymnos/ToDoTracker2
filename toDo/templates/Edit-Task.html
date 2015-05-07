@@ -57,55 +57,13 @@
           <li><a href="/toDoTracker/Impressum.html">Impressum</a></li>
         </ul>
 		
-		<form role ="form" method="post" class="form">
+	 <form role="form" action="" method="post" class="form">
+    <div class="container">
     {% csrf_token %}
-		<div class="row">
-    	<div class="col-sm-6">
-        <h4>
-          ToDo:
-        </h4>
-  		  <div class="form-group">
-      		<label class="sr-only" for="newTask">
-            ToDo:
-          </label>
-          <!--field for editing tasks -->
-          <input type="text" class="form-control" id="newTask" maxlength="160" value="{{ list.task }}"/>
-			 </div>
-		  </div>
-    <div class="col-sm-3">
-      <h4>
-        Progress
-        <p>
-          <small>
-            in Percent
-          </small>
-        </p>
-      </h4>
-      <div class="form-group">
-        <!-- field for editing progress -->
-        <label class="sr-only" for="progress">
-          Progress
-        </label>
-        <input type="text" id="progress" name="progress" min="0" max="100" value="{{ list.progress }}"/>
-      </div>
     </div>
-    <div class="col-sm-3">
-      <h4>
-        Deadline
-      </h4>
-      <div class="form-group">
-        <!-- field for editing the deadline -->
-        <label class="sr-only" for="deadline">
-          Deadline:
-        </label>
-        <input type="text" id="deadline" name="deadline" value="{{ list.deadline }}"/>
-      </div>
-    </div>
-  
-  
-    </div>
-
-    <input type="submit" value="Submit"/>
+    {{ form.as_p }}
+    <input type="submit" value="Update"/>
+  </div>
 
   </form>
   		

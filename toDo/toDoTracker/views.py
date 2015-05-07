@@ -65,6 +65,7 @@ class ToDoCreate(CreateView):
     fields = ['task', 'progress', 'deadline']
     success_url ='/toDoTracker/'
     
+    
 
 class TaskUpdateView(UpdateView):
     template_name = 'Edit-Task.html'
