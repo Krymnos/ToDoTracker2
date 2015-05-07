@@ -55,13 +55,19 @@ def newTask(request):
         'form': form,
     })
 
-class ToDoUpdate(UpdateView):
+class TaskUpdateView(UpdateView):
     model = List
-    fields = ['task']
-    fields = ['progress']
-    fields = ['deadline']
-    fields = ['completed']
+    form_class = EditTaskForm
     template_name = 'Edit-Task.html'
+
+    def dispatch(self, *args, **kwargs):
+        self.list_id = kwargs['pk']
+        return super(TaskUpdateView, self).dispatch(*args, **kwargs)
+
+    def form_valid(self, form):
+        form.save()
+        list = List.objects.get(id=self.list_id)
+        return HttpResponse(render_to_string('/', {'list': list}))
 
 
 
