@@ -35,6 +35,12 @@ def finishTask(request, pk):
     obj.progress = 100
     obj.save()
     return redirect('/toDoTracker/')
+
+#called by delete button on indexpage
+def deleteTask(request, pk):
+    obj = List.objects.get(id=pk)
+    obj.delete()
+    return redirect('/toDoTracker/')
     
 
 def newTask(request):
