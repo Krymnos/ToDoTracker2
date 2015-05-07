@@ -17,3 +17,14 @@ Zur geforderten Funktionalität gehört (mindestens) :
 
 
 Gruppe: Ron Wierzchowski und Natalie Kaminsky
+
+
+Anleitung:
+    1. Python herunterladen und istallieren ( https://www.python.org/downloads/ )
+    2. Django herunterladen und installieren ( für die Windows-Installation: https://docs.djangoproject.com/en/1.8/howto/windows/ )
+    3. Kommandozeile öffnen und in das Projektverzeichnis mit der Datei "manage.py" wechseln ( cd <Pfad> )
+    4. Kommando " manage.py runserver 127.0.0.1:8000 " eingeben und mit Enter ausführen
+    5. Im Browser die URL " localhost:8000 " eingeben
+    6. Den ToDo-Tracker anwenden
+    
+    Viel Spaß!
