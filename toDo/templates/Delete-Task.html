@@ -1,0 +1,67 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+    <!DOCTYPE html>
+    <html lang="en">
+      <title>ToDo-Tracker</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+      <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via  -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+
+  <body>
+    <!-- "Page Header" green Jumbotron -->
+    <div style="background:lightgreen" class="jumbotron">
+      <div class="container">
+        <blockquote class="blockquote-reverse">
+          <h1>
+            <span class="text-success">
+              KeepUp
+            </span>
+          </h1>      
+          <p class="text-success">
+            Your very own ToDo-Tracker
+          </p>      
+        </blockquote> 
+      </div> 
+    </div>
+
+    {% block content %}
+    <form action="" method="post">
+      <div class="container">
+      {% csrf_token %}
+      <p>Are you sure you want to delete "{{ list }}"?</p>
+      <input type="submit" value="Confirm" />
+    </div>
+    </form>
+    {% endblock %}
+
+    <!-- <div class="container">
+
+        <div class="starter-template">
+        </div> -->
+
+</body>
+</html>
