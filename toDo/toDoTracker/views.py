@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 import sqlite3
 from django.http import HttpResponse
 from django.views import generic
@@ -29,7 +29,13 @@ class ImpressumView(TemplateView):
 class IndexView(TemplateView):
     template_name = 'ToDo-Tracker.html'
 
-
+#called by task finished button on indexpage
+def finishTask(request, pk):
+    obj = List.objects.get(id=pk)
+    obj.progress = 100
+    obj.save()
+    return redirect('/toDoTracker/')
+    
 
 def newTask(request):
     if request.method == 'GET':
