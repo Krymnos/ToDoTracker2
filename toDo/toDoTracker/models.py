@@ -5,7 +5,7 @@ class List(models.Model):
 
   task = models.CharField(max_length=160)
   progress = models.IntegerField(default=0)
-  deadline = models.DateField()
+  deadline = models.CharField(max_length=20)
   completed = models.BooleanField(default=False)
 
   def __str__(self): 

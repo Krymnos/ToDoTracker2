@@ -12,7 +12,6 @@
 
   <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
-
     <!DOCTYPE html>
     <html lang="en">
       <title>ToDo-Tracker</title>
@@ -49,6 +48,7 @@
       </div> 
     </div>
 
+      {% block content %}
       <div class="container">
         <!-- Menubar -->
         <ul class="nav nav-tabs">
@@ -57,22 +57,19 @@
           <li><a href="/toDoTracker/Impressum.html">Impressum</a></li>
         </ul>
 		
-		<form action ="" method="post" class="form">
+		<form role ="form" method="post" class="form">
+    {% csrf_token %}
 		<div class="row">
-    	<div class="col-sm-6"><h4>ToDo:</h4>
+    	<div class="col-sm-6">
+        <h4>
+          ToDo:
+        </h4>
   		  <div class="form-group">
-      		<label class="sr-only" for="newTask">ToDo:</label>
+      		<label class="sr-only" for="newTask">
+            ToDo:
+          </label>
           <!--field for editing tasks -->
-          
-          <textarea class="form-control" rows="2" id="newTask">
-            {{ row.1 }}
-          </textarea>
-
-          <!-- <form action="" method="post">{% csrf_token %}
-            {{ form.as_p }}
-            <input type="text" value="{{ row.value }}" />
-          </form> -->
-
+          <input type="text" class="form-control" id="newTask" maxlength="160" value="{{ list.task }}"/>
 			 </div>
 		  </div>
     <div class="col-sm-3">
@@ -86,8 +83,10 @@
       </h4>
       <div class="form-group">
         <!-- field for editing progress -->
-        <label class="sr-only" for="progress">Progress</label>
-        <input type="number" id="progress" name="progress" min="0" max="100" value="{{ row.2 }}">
+        <label class="sr-only" for="progress">
+          Progress
+        </label>
+        <input type="text" id="progress" name="progress" min="0" max="100" value="{{ list.progress }}"/>
       </div>
     </div>
     <div class="col-sm-3">
@@ -99,43 +98,24 @@
         <label class="sr-only" for="deadline">
           Deadline:
         </label>
-        <input type="date" id="deadline" name="deadline">{{ row.3 }}</input>
+        <input type="text" id="deadline" name="deadline" value="{{ list.deadline }}"/>
       </div>
     </div>
   
   
     </div>
+
+    <input type="submit" value="Submit"/>
+
   </form>
-  <!-- button for saving the changes -->
-  
-  <!-- <button type="submit" class="btn btn-default">Save changes</button>
-  <form action="toDoUpdate">
-    <input type="submit" value="Save Changes" class="btn btn-success" />
-  </form> -->
- 
-<form action="/" method="post">
-    <input type="submit" value="Submit" />
-</form>
-
-<!-- <form action="/" method="post">
-  {% csrf_token %}
-  {{ form.as_p }}
-
-  <label for="task">Task: </label>
-  <input id="task" type="text" name="task" maxlength="100">
-
-  <input type="submit" value="Update" />
-</form> -->
-
-
-		
+  		
     </div>
+    {% endblock %}
 
-    <div class="container">
+    <!-- <div class="container">
 
         <div class="starter-template">
-        {% block content %}{% endblock %}
-        </div>
+        </div> -->
 
 </body>
 </html>

@@ -1,10 +1,9 @@
-from django.views.generic import TemplateView
 from django.shortcuts import render
-from toDoTracker.forms import NewTaskForm
 import sqlite3
-from django.views.generic.edit import UpdateView
+from django.http import HttpResponse
+from django.views import generic
+from django.views.generic import TemplateView, ListView, UpdateView, CreateView
 from toDoTracker.models import List
-#from django.http import HttpResponseRedirect
 
 #class IndexView(TemplateView):
 #   template_name = 'ToDo-Tracker.html'
@@ -55,25 +54,20 @@ def newTask(request):
         'form': form,
     })
 
-class TaskUpdateView(UpdateView):
+
+class IndexView(ListView):
+    template_name = 'ToDo-Tracker.html'
     model = List
-    form_class = EditTaskForm
+
+class ToDoCreate(CreateView):
+    template_name = 'New-Task.html'
+    model = List
+    fields = ['task', 'progress', 'deadline']
+    success_url ='/toDoTracker/'
+    
+
+class TaskUpdateView(UpdateView):
     template_name = 'Edit-Task.html'
-
-    def dispatch(self, *args, **kwargs):
-        self.list_id = kwargs['pk']
-        return super(TaskUpdateView, self).dispatch(*args, **kwargs)
-
-    def form_valid(self, form):
-        form.save()
-        list = List.objects.get(id=self.list_id)
-        return HttpResponse(render_to_string('/', {'list': list}))
-
-
-
-#from django.http import HttpResponse
-#from django.template import loader
-
-#def index(request):
-#    template = loader.get_template('ToDo-Tracker.html')
-#    return HttpResponse(template)
+    model = List
+    fields = ['task', 'progress', 'deadline']
+    succes_url = '/toDoTracker/'
