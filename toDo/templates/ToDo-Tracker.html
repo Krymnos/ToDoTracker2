@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+{% load staticfiles %}
 <html lang="en">
 
   <head>
@@ -14,7 +14,7 @@
 
     <!DOCTYPE html>
     <html lang="en">
-      <title>ToDo-Tracker</title>
+      <title>ToDo-Tracker {% block title %}{% endblock %}</title>
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
@@ -31,6 +31,7 @@
   </head>
 
   <!-- "Page Header" green Jumbotron -->
+  {% block content %}
   <body>
     <div style="background:lightgreen" class="jumbotron">
       <div class="container">
@@ -78,26 +79,26 @@
           </thead>
           <tbody>
             <!-- example tasks following -->
-	{% for row in rows %}
+	{% for list in object_list %}
             <tr>
               <td>
-               {{ row.1 }}
+               {{ list.task }}
               </td>
               <td>
                 <!-- Progressbar -->
                 <div class="progress">
-                  <div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="{{ row.2 }}" aria-valuemin="0" aria-valuemax="100" style="width:100%">
-                    {{ row.2 }}%
+                  <div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="{{ list.progress }}" aria-valuemin="0" aria-valuemax="100" style="width:{{ list.progress }}%">
+                    {{ list.progress }}%
                   </div>
                 </div>
               </td>
               <td>
-                {{ row.4 }}
+                {{ list.deadline }}
               </td>
               <td>
                 <!-- Buttons for editing, finishing and deleting tasks -->
                 <div class="btn-group btn-group-xs">
-                  <a href="Edit-Task.html" type="button" class="btn btn-success" data-toggle="tooltip" title="Edit Task"><span class="glyphicon glyphicon-pencil"></span></a>
+                  <a href="edit/{{ list.id }}" type="button" class="btn btn-success" data-toggle="tooltip" title="Edit Task"><span class="glyphicon glyphicon-pencil"></span></a>
                   <button type="button" class="btn btn-success"><span class="glyphicon glyphicon-ok" data-toggle="tooltip" title="Finish Task"></span></button>
                   <button type="button" class="btn btn-success"><span class="glyphicon glyphicon-trash" data-toggle="tooltip" title="Delete Task"></span></button>
                 </div>
@@ -108,9 +109,11 @@
           </tbody>
       </table>
       <!-- Button for adding a new taks -->
-      <a href="New-Task.html" class="btn btn-success btn-lg">Add Task</a>
+      <a href="/toDoTracker/New-Task.html" class="btn btn-success btn-lg">Add Task</a>
     </div>
-        
+  {% endblock %}
+
+
     
       
     

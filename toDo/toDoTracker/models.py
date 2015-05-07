@@ -3,7 +3,7 @@ import datetime
 
 class List(models.Model): 
 
-  task = models.CharField(max_length=250)
+  task = models.CharField(max_length=160)
   progress = models.IntegerField(default=0)
   deadline = models.CharField(max_length=20)
   completed = models.BooleanField(default=False)
@@ -14,9 +14,11 @@ class List(models.Model):
 
   class Meta: 
 
-    ordering = ['task'] 
+    ordering = ['task']
 
   class Admin: 
 
     pass
 
+  def get_absolute_url(self):
+    return u'/toDoTracker/'

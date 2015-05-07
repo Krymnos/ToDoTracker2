@@ -1,7 +1,9 @@
-from django.views.generic import TemplateView
 from django.shortcuts import render
-from toDoTracker.forms import NewTaskForm
 import sqlite3
+from django.http import HttpResponse
+from django.views import generic
+from django.views.generic import TemplateView, ListView, UpdateView, CreateView
+from toDoTracker.models import List
 
 #class IndexView(TemplateView):
 #   template_name = 'ToDo-Tracker.html'
@@ -23,6 +25,9 @@ class NewTaskView(TemplateView):
 
 class ImpressumView(TemplateView):
    template_name = 'Impressum.html'
+
+class IndexView(TemplateView):
+    template_name = 'ToDo-Tracker.html'
 
 
 
@@ -49,9 +54,21 @@ def newTask(request):
         'form': form,
     })
 
-#from django.http import HttpResponse
-#from django.template import loader
 
-#def index(request):
-#    template = loader.get_template('ToDo-Tracker.html')
-#    return HttpResponse(template)
+class IndexView(ListView):
+    template_name = 'ToDo-Tracker.html'
+    model = List
+
+class ToDoCreate(CreateView):
+    template_name = 'New-Task.html'
+    model = List
+    fields = ['task', 'progress', 'deadline']
+    success_url ='/toDoTracker/'
+    
+    
+
+class TaskUpdateView(UpdateView):
+    template_name = 'Edit-Task.html'
+    model = List
+    fields = ['task', 'progress', 'deadline']
+    succes_url = '/toDoTracker/'

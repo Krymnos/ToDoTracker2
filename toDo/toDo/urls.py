@@ -19,5 +19,6 @@ from django.contrib import admin
 urlpatterns = [
     url(r'^toDoTracker/', include('toDoTracker.urls')),
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^', include('toDoTracker.urls')),
     #url(r'^$', views.IndexView.as_view()),
 ]

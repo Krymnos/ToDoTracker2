@@ -1,3 +1,4 @@
+{% load staticfiles %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,7 +11,6 @@
 
 
   <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-
 
     <!DOCTYPE html>
     <html lang="en">
@@ -48,6 +48,7 @@
       </div> 
     </div>
 
+      {% block content %}
       <div class="container">
         <!-- Menubar -->
         <ul class="nav nav-tabs">
@@ -56,34 +57,23 @@
           <li><a href="/toDoTracker/Impressum.html">Impressum</a></li>
         </ul>
 		
-		<form role="form">
-		<div class="row">
-    	<div class="col-sm-6"><h4>ToDo:</h4>
-  		  <div class="form-group">
-    		<label class="sr-only" for="newTask">ToDo:</label>
-        <!-- field for editing tasks -->
-        <textarea class="form-control" rows="2" id="newTask" maxlength="160">clean room</textarea>
-			 </div>
-		  </div>
-    <div class="col-sm-3"><h4>Progress<p><small>in Percent</small></p></h4>
-  <div class="form-group">
-    <!-- field for editing progress -->
-    <label class="sr-only" for="progress">Progress</label>
-  <input type="number" name="progress" min="0" max="100" value="60">
-  </div>
-  </div>
-    <div class="col-sm-3"><h4>Deadline</h4></div>
-	<div class="form-group">
-    <!-- field for editing the deadline -->
-    <label class="sr-only" for="deadline">Deadline:</label>
-  <input type="date" name="deadline" value="07/12/2015"></div>
-  
-  
-  </div>
-  <!-- button for saving the changes -->
-  <button type="submit" class="btn btn-default">Save changes</button>
- </form>
-		
+	 <form role="form" action="" method="post" class="form">
+    <div class="container">
+    {% csrf_token %}
     </div>
+    {{ form.as_p }}
+    <input type="submit" value="Update"/>
+  </div>
+
+  </form>
+  		
+    </div>
+    {% endblock %}
+
+    <!-- <div class="container">
+
+        <div class="starter-template">
+        </div> -->
+
 </body>
 </html>
